@@ -94,15 +94,15 @@ npm run deploy      # next build && wrangler deploy
 ```
 
 - [x] `wrangler` は devDependency に固定済み（`^4.124.0`）
-- [ ] Worker 名が `wrangler.jsonc` の `name` と一致している
+- [x] Worker 名が `wrangler.jsonc` の `name` と一致している（`homerun-website`）
 
 **共通**
 
-- [ ] `https://homerun.crosslayer.co.jp/` が HTTPS で開く（証明書は Cloudflare が自動発行）
-- [ ] `https://homerun.crosslayer.co.jp/thanks/` に直接アクセスして 404 にならない
-- [ ] `/privacy/` `/terms/` `/legal/tokushoho/` も直アクセスで開く
-- [ ] `robots.txt` と `sitemap.xml` が配信されている
-- [ ] `public/_headers` のセキュリティヘッダが効いている
+- [x] `https://homerun.crosslayer.co.jp/` が HTTPS で開く（2026-08-19 確認）
+- [x] `https://homerun.crosslayer.co.jp/thanks/` に直接アクセスして 404 にならない
+- [x] `/privacy/` `/terms/` `/legal/tokushoho/` も直アクセスで開く
+- [x] `robots.txt` と `sitemap.xml` が配信されている
+- [x] `public/_headers` のセキュリティヘッダが効いている（4 つとも応答に乗る）
 
 ```bash
 curl -sI https://homerun.crosslayer.co.jp/ | grep -i "x-content-type-options\|referrer-policy\|x-frame-options"

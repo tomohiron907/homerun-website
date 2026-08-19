@@ -3,7 +3,7 @@ export const site = {
   vendor: "CrossLayer LLC",
   vendorUrl: "https://crosslayer.co.jp",
   url: "https://homerun.crosslayer.co.jp",
-  version: "0.1.0",
+  version: "1.0.0",
   price: { amount: 19, currency: "USD", display: "$19" },
   trialDays: 14,
   activationLimit: 3,
@@ -11,7 +11,7 @@ export const site = {
   checkoutUrl:
     "https://buy.polar.sh/polar_cl_NwWaZDUrgcgh3hjnB1w16hEcPRFr6WL4NOpRR0Q0cnX",
   downloadUrl:
-    "https://homerun-dl.crosslayer.co.jp/HomeRun_0.1.0_universal.dmg",
+    "https://homerun-dl.crosslayer.co.jp/HomeRun_1.0.0_universal.dmg",
   supportEmail: "support@crosslayer.co.jp",
   customerPortalUrl: "https://polar.sh/crosslayer-llc/portal",
 } as const;
