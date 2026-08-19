@@ -69,30 +69,32 @@ grep -rn "TODO(release)" src   # → 0 件
 
 ---
 
-## 3. DNS / ホスティング（Cloudflare Pages）
+## 3. DNS / ホスティング（Cloudflare Workers）
 
 GitHub Pages 用の `public/CNAME` と `.github/workflows/deploy.yml` は **削除済み**。
-`CNAME` ファイルは GitHub Pages 専用の仕組みで、Cloudflare Pages では意味を持たないどころか
+`CNAME` ファイルは GitHub Pages 専用の仕組みで、Cloudflare では意味を持たないどころか
 `out/` に不要なファイルが残るだけなので消してある。
 
 配信方法は 2 通り。どちらか一方を選ぶ。
 
 **A. Git 連携（推奨・push するたび自動デプロイ）**
 
-- [ ] このリポジトリを GitHub に push（現状ローカルのみ、**コミットが 1 つも無い**）
-- [ ] Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git
-- [ ] Build command: `npm run build` / Build output directory: `out` / Framework preset: Next.js (Static HTML Export)
-- [ ] Custom domains に `homerun.crosslayer.co.jp` を追加（同一アカウントの DNS なら CNAME は自動作成）
+- [x] このリポジトリを GitHub (`tomohiron907/homerun-website`) に push（2026-08-19）
+- [ ] Cloudflare Dashboard → Workers & Pages → Create → Worker → Connect to Git
+- [ ] Build command: `npm run build` / Deploy command: `npx wrangler deploy` / Root directory: `/`
+- [ ] **Framework preset は使わない**（Next.js を選ぶと OpenNext が走って必ず失敗する）
+- [ ] Worker 名が `wrangler.jsonc` の `name`（`homerun-website`）と一致している
+- [ ] Custom domains に `homerun.crosslayer.co.jp` を追加（同一アカウントの DNS なら自動作成）
 
 **B. 直接アップロード（GitHub を使わない場合）**
 
 ```bash
 npx wrangler login
-npm run deploy      # next build && wrangler pages deploy out --project-name=homerun
+npm run deploy      # next build && wrangler deploy
 ```
 
-- [ ] `wrangler` を devDependency に入れるか、`npx` で都度実行するか決めた
-- [ ] Pages プロジェクト名が `--project-name=homerun` と一致している
+- [x] `wrangler` は devDependency に固定済み（`^4.124.0`）
+- [ ] Worker 名が `wrangler.jsonc` の `name` と一致している
 
 **共通**
 

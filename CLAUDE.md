@@ -7,7 +7,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 # homerun-website
 
 HomeRun (macOS 向けキーボードファーストなファイルブラウザ) の販売用ランディングページ。
-`homerun.crosslayer.co.jp` で Cloudflare Pages に静的配信する（`next build` → `out/`）。
+`homerun.crosslayer.co.jp` で Cloudflare Workers に静的配信する（`next build` → `out/`）。
+Worker は `wrangler.jsonc` の `assets` で `out/` をそのまま配信するだけの構成。
+**OpenNext (`@opennextjs/cloudflare`) は使わない** — `output: "export"` は
+`.next/standalone` を生成しないのでアダプタが動かない。
 
 ## 重要なルール
 

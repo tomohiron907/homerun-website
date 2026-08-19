@@ -56,8 +56,13 @@ public/CNAME            homerun.crosslayer.co.jp
 
 ## デプロイ
 
-Cloudflare Pages に `out/` を配信する。Git 連携（push で自動）か `npm run deploy`
-（`wrangler pages deploy out`）のどちらか。GitHub Pages 用の workflow と `public/CNAME` は削除済み。
+Cloudflare Workers の静的アセット機能で `out/` を配信する。設定は `wrangler.jsonc`。
+Git 連携（push で自動）か `npm run deploy`（`next build && wrangler deploy`）のどちらか。
+GitHub Pages 用の workflow と `public/CNAME` は削除済み。
+
+Cloudflare の Next.js フレームワークプリセットは **使ってはいけない**。
+あれは OpenNext で SSR を Workers 上に載せる仕組みで、`.next/standalone` を要求するが、
+このサイトは `output: "export"` なのでそれを生成しない（デプロイが必ず失敗する）。
 
 **DNS と Polar が未設定なので、今 push しても売れる状態にはならない。**
 公開手順は `RELEASE-CHECKLIST.md` に従うこと。
