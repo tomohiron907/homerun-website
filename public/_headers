@@ -1,0 +1,8 @@
+# Cloudflare Pages security headers. The site is fully static and loads no
+# third-party origins, so these can be strict without breaking anything.
+# (完全な静的サイトで外部オリジンを読み込まないため、強めに設定できる)
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
