@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Static-assets-only Worker: there is no `main` script, because the site is a
+  // pure `output: "export"` build. Declaring this here stops Cloudflare from
+  // applying its Next.js framework preset, which runs the OpenNext adapter and
+  // fails on the missing `.next/standalone`.
+  // (静的書き出しのみのため OpenNext アダプタは使わない)
+  "name": "homerun-website",
+  "compatibility_date": "2026-08-15",
+  "assets": {
+    "directory": "./out",
+    // Serve out/404.html for unmatched paths, matching the Next.js not-found page.
+    // (未知のパスは Next の 404 ページを返す)
+    "not_found_handling": "404-page"
+  }
+}
