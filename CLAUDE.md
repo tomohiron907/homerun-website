@@ -23,6 +23,14 @@ Worker は `wrangler.jsonc` の `assets` で `out/` をそのまま配信する�
   リリース前作業の一覧になる (`RELEASE-CHECKLIST.md` と対応)。
 - Buy ボタンは必ず `buyUrl("<設置場所>")` を通す。UTM は後から計測できないので最初から入れる。
 - 秘密情報 (Apple ID / 署名鍵 / パスワード) は**このリポジトリに一切書かない**。
+- **`package-lock.json` はビルド環境と同じ npm で生成する**。Cloudflare は
+  `.node-version`(22.16.0) に同梱の **npm 10.9.2** で `npm ci` を走らせる。
+  手元の新しい npm (11 系) が作った lock は `@emnapi/*` の解決が食い違い、
+  `npm ci` が EUSAGE で落ちる。依存を足したら必ず次で作り直すこと:
+  ```bash
+  npx -y npm@10.9.2 install --package-lock-only
+  npx -y npm@10.9.2 ci   # 通ることを確認してからコミット
+  ```
 
 ## コマンド
 
